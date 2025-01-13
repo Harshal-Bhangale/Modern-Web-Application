@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harshal Portfolio</title>
+  <link rel="stylesheet" href="assets/newcss.css" />
+</head>
+
+<body>
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#" class="nav__logo">Piratev_</a>
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list grid">
+          <li class="nav__item">
+            <a href="#home" class="nav__link active-link">
+              <i class="uil uil-estate nav__icon"></i>Home
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#about" class="nav__link">
+              <i class="uil uil-user nav__icon"></i>About
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a href="#qualification" class="nav__link">
+              <i class="uil uil-briefcase-alt nav__icon"></i>Qualification
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a href="#contact" class="nav__link">
+              <i class="uil uil-message nav__icon"></i>Contact
+            </a>
+          </li>
+        </ul>
+        <i class="uil uil-times nav__close" id="nav-close"></i>
+      </div>
+      <div class="nav__btns">
+  </header>
+
+
+  <main class="main">
+    <section class="home section" id="home">
+      <div class="home__container container grid">
+        <div class="home__content grid">
+          <div class="home__social">
+            <a href="https://www.linkedin.com/in/harshal-bhangale-5b803623a/" target="_blank" class="home__social-icon">
+              <i class="uil uil-linkedin-alt home__icon"></i>
+            </a>
+
+            <a href="https://github.com/Harshal-Bhangale" target="_blank" class="home__social-icon">
+              <i class="uil uil-github-alt home__icon"></i>
+            </a>
+          </div>
+
+          <div class="home__img">
+            <img src="assets/img/Profile Pic.jpg" alt="Profile Picture" class="home__blob-img" />
+          </div>
+
+          <div class="home__data">
+            <h1 class="home__title">Hi, I'm Harshal Bhangale</h1>
+            <h3 class="home__subtitle">Computer Engineering</h3>
+            <p class="home__description">
+              A third-year undergraduate engineering student at
+              <strong>JSPM's RSCOE, Tathwade</strong>, Pune.
+            </p>
+            <a href="#contact" class="button button--flex">
+              Contact me<i class="uil uil-message button__icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="about section" id="about">
+      <h2 class="section__title">About Me</h2>
+      <span class="section__subtitle">My introduction</span>
+
+      <div class="about__container container grid">
+        <img src="assets\img\Harsh Mirror.jpg" alt="" class="about__img" />
+
+        <div class="about__data">
+          <p class="about__description">
+            I am a third-year Computer Engineering student at JSPM's RSCOE, Pune, with a deep passion for technology,
+            software development, and problem-solving. My interests span across web development, machine learning, and
+            Java Developer. I enjoy working on projects that challenge me to learn and apply new technologies. Always
+            eager to collaborate and expand my skills, I am actively involved in coding and contributing to open-source
+            projects.
+          </p>
+
+          <div class="about__info">
+            <div>
+              <span class="about__info-title">9.3</span>
+              <span class="about__info-name">CGPA</span>
+            </div>
+
+            <div>
+              <span class="about__info-title">02</span>
+              <span class="about__info-name">
+                Projects</span>
+            </div>
+
+            <div>
+              <span class="about__info-title">00</span>
+              <span class="about__info-name">Months <br />experience</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="qualification__section service__section" id="qualification">
+      <h2 class="section__title">Qualification</h2>
+      <span class="section__subtitle">My personal journey</span>
+
+      <div class="qualification__container container grid services__container">
+        <div class="qualification__tabs">
+          <div class="qualification__button button--flex qualification__active" data-target="#education">
+            <i class="uil uil-graduation-cap qualification__icon"></i>
+            Education
+          </div>
+        </div>
+
+        <div class="qualification__sections">
+          <!--====== Qualification Content 1 ======-->
+          <div class="qualification__content qualifiation__active services__content" data-content id="education">
+            <!--====== Qualification 1 ======-->
+            <div class="qualification__data">
+              <div>
+                <h3 class="qualification__title">Nutun Vidyalaya, Malkapur</h3>
+                <span class="qualification__subtitle">High School</span>
+                <div class="qualification__calender">
+                  <!-- <i class="uil uil-calendar-alt"></i> -->
+                  2014 - 2020
+                </div>
+                <!-- <span class="button button--flex button--small button--link services__button">
+                  View More
+                  <i class="uil uil-arrow-right button__icon"></i>
+                </span> -->
+                <div class="services__modal">
+                  <div class="services__modal-content">
+                    <h4 class="services__modal-title">
+                      Class 10th Summary :
+                    </h4>
+                    <i class="uil uil-times services__modal-close"></i>
+                    <ul class="services__modal-services grid">
+                      <li class="services__modal-service">
+                        <i class="uil uil-check-circle services__moda-icon"></i>
+                        <p>
+                          Subjects studied: Science, Maths, English,
+                          Social Studies,Kannada,Hindi.
+                        </p>
+                      </li>
+                      <li class="services__modal-service">
+                        <i class="uil uil-check-circle services__moda-icon"></i>
+                        <p>Scored 94%</p>
+                      </li>
+                      <li class="services__modal-service">
+                        <i class="uil uil-check-circle services__moda-icon"></i>
+                        <p>Came runners up in inter-school Badminton</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <span class="qualification__rounder"></span>
+                <span class="qualification__line"></span>
+              </div>
+            </div>
+
+            <div class="qualification__data">
+              <div></div>
+
+              <div>
+                <span class="qualification__rounder"></span>
+                <span class="qualification__line"></span>
+              </div>
+              <div>
+                <h3 class="qualification__title">Diploma</h3>
+                <span class="qualification__subtitle">JSPM'S <br />RSCOE Tathwade, Pune</span>
+                <div class="qualification__calender">
+                  2020 - 2023
+                </div>
+                <div class="services__modal">
+                  <div class="services__modal-content">
+                    <h4 class="services__modal-title">
+                      Diploma :
+                    </h4>
+                    <i class="uil uil-times services__modal-close"></i>
+                    <ul class="services__modal-services grid">
+                      <li class="services__modal-service">
+                        <i class="uil uil-check-circle services__moda-icon"></i>
+                        <p>
+                          OOPS, Computer Network , Java , Python
+                        </p>
+                      </li>
+                      <li class="services__modal-service">
+                        <i class="uil uil-check-circle services__moda-icon"></i>
+                        <p>Scored 91%</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="qualification__data">
+              <div>
+                <h3 class="qualification__title">Btech</h3>
+                <span class="qualification__subtitle">JSPM's RSCOE Tathwade, Pune</span>
+                <div class="qualification__calender">
+                  2023 - 2026
+                </div>
+
+                <div class="services__modal">
+                  <div class="services__modal-content">
+                    <h4 class="services__modal-title">College Summary :</h4>
+                    <i class="uil uil-times services__modal-close"></i>
+                    <ul class="services__modal-services grid">
+                      <li class="services__modal-service">
+                        <i class="uil uil-check-circle services__modal-icon"></i>
+                        <p>
+                          Studying core subjects of IT including DSA.
+                        </p>
+                      </li>
+                      <li class="services__modal-service">
+                        <i class="uil uil-check-circle services__modal-icon"></i>
+                        <p>Scored an aggregate of 9.4 CGPA till now.</p>
+                      </li>
+                      <li class="services__modal-service">
+                        <i class="uil uil-check-circle services__modal-icon"></i>
+                        <p>
+                          Student coordinator in Web Developer in IEEE RSCOE SB
+                        </p>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="contact section" id="contact">
+      <h2 class="section__title">Contact Me</h2>
+      <span class="section__subtitle">Get in touch</span>
+
+      <div class="contact__container container grid">
+        <div>
+          <div class="contact__information">
+            <i class="uil uil-calling contact__icon"></i>
+
+            <div>
+              <h3 class="contact__title">Contact Me</h3>
+              <span class="contact__subtitle"><a href="tel:7709559169"></a>7709599169</span>
+            </div>
+          </div>
+
+          <div class="contact__information">
+            <i class="uil uil-envelope-minus contact__icon"></i>
+
+            <div>
+              <h3 class="contact__title">Email</h3>
+              <span class="contact__subtitle">harshalbhangale90@gmail.com</span>
+            </div>
+          </div>
+
+          <div class="contact__information">
+            <i class="uil uil-map-marker contact__icon"></i>
+
+            <div>
+              <h3 class="contact__title">Location</h3>
+              <span class="contact__subtitle">Pune , India</span>
+            </div>
+          </div>
+        </div>
+
+        <form action="" class="contact__form grid">
+          <div class="contact__inputs grid">
+            <div class="contact__content">
+              <label for="" class="content__label">Name</label>
+              <input type="text" class="contact__input" />
+            </div>
+
+            <div class="contact__content">
+              <label for="" class="content__label">Email</label>
+              <input type="Email" class="contact__input" />
+            </div>
+          </div>
+
+          <div class="contact__content">
+            <label for="" class="content__label">Message</label>
+            <textarea name="" id="" cols="0" rows="7" class="contact__input"></textarea>
+          </div>
+
+          <div>
+            <a href=" mailto: harshalbhangale90@gmail.com?subject=Testing out mailto! &body=This is only a test!"
+              class="button button--flex">
+              Send Message
+              <i class="uil uil-message button__icon"></i>
+            </a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="footer">
+    <div class="footer__bg">
+      <div class="footer__container container grid">
+        <div>
+          <h1 class="footer__title">Piratev_</h1>
+          <!-- <span class="footer__subtitle">Computer Engineering Student</span> -->
+        </div>
+
+        <ul class="footer__links">
+          <li>
+            <a href="#qualification" class="footer__link">Qualification</a>
+          </li>
+          <li>
+            <a href="#portfolio" class="footer__link">Portfolio</a>
+          </li>
+          <li>
+            <a href="#contact" class="footer__link">Contact</a>
+          </li>
+        </ul>
+
+        <div class="footer__socials">
+          <a href="https://www.instagram.com/venkateeshh/" class="footer__social" target="__blank">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a href="https://twitter.com/Venkateeshhh" target="__blank" class="footer__social">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+        </div>
+      </div>
+
+      <p class="footer__copy">&#169; Piratev_. All right reserved</p>
+    </div>
+  </footer>
+
+
+
+  <!-- <script type="text/javascript" src="assets/swiper-bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/2205d59d52.js" crossorigin="anonymous"></script>
+  <script src="assets/ptj.js"></script> -->
+</body>
+
+</html>
