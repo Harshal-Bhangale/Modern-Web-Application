@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html ng-app="employeeApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Entry System</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffe3ff, #d0eaff);
+      padding: 30px;
+      animation: bgShift 10s infinite alternate;
+    }
+
+    @keyframes bgShift {
+      0% { background: linear-gradient(135deg, #ffe3ff, #d0eaff); }
+      50% { background: linear-gradient(135deg, #f9f7d9, #c2ffd3); }
+      100% { background: linear-gradient(135deg, #ffd6d6, #cfd9ff); }
+    }
+
+    .container {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      transition: 0.5s ease;
+      border: 2px solid #eeeeee;
+    }
+
+    .container:hover {
+      box-shadow: 0 0 20px #ba68c8;
+      border-color: #ba68c8;
+    }
+
+    h2 {
+      text-align: center;
+      color: #6a1b9a;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #4a148c;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      margin-top: 5px;
+      transition: border 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #7e57c2;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      background: linear-gradient(to right, #8e24aa, #6a1b9a);
+      color: white;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 6px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.4s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #4a148c, #8e24aa);
+      transform: scale(1.02);
+      box-shadow: 0 0 10px #8e24aa88;
+    }
+
+    .output {
+      margin-top: 30px;
+      background: #f3e5f5;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #d1c4e9;
+      color: #4a148c;
+    }
+
+    .success-icon {
+      font-size: 20px;
+      color: green;
+    }
+
+    .error-msg {
+      color: red;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body ng-controller="employeeCtrl">
+
+  <div class="container">
+    <h2>Employee Entry Form</h2>
+    
+    <label>Full Name:</label>
+    <input type="text" ng-model="employee.name" placeholder="Enter full name">
+    <span class="error-msg" ng-show="showError && !employee.name">Name is required.</span>
+
+    <label>Date of Birth:</label>
+    <input type="date" ng-model="employee.dob">
+    <span class="error-msg" ng-show="showError && !employee.dob">DOB is required.</span>
+
+    <label>Department:</label>
+    <select ng-model="employee.dept">
+      <option value="" disabled selected>Select department</option>
+      <option>IT</option>
+      <option>HR</option>
+      <option>Finance</option>
+      <option>Admin</option>
+    </select>
+    <span class="error-msg" ng-show="showError && !employee.dept">Department is required.</span>
+
+    <label>Salary (₹):</label>
+    <input type="number" ng-model="employee.salary" placeholder="e.g. 50000">
+    <span class="error-msg" ng-show="showError && !employee.salary">Salary is required.</span>
+
+    <button ng-click="submit()">Submit</button>
+
+    <div class="output" ng-if="submitted">
+      <h3 class="success-icon">✔ {{message}}</h3>
+      <p><strong>Name:</strong> {{employee.name}}</p>
+      <p><strong>DOB:</strong> {{employee.dob | date : 'dd MMM yyyy'}}</p>
+      <p><strong>Department:</strong> {{employee.dept}}</p>
+      <p><strong>Salary:</strong> ₹{{employee.salary}}</p>
+    </div>
+  </div>
+
+  <script>
+    var app = angular.module("employeeApp", []);
+    app.controller("employeeCtrl", function($scope, $http) {
+      $scope.employee = {};
+      $scope.submitted = false;
+      $scope.message = "";
+      $scope.showError = false;
+
+      $scope.submit = function() {
+        $scope.showError = false;
+
+        if ($scope.employee.name && $scope.employee.dob && $scope.employee.dept && $scope.employee.salary) {
+          $http.post("http://localhost/attendanceapp/ajaxhandler/insert.php", $scope.employee)
+            .then(function(response) {
+              $scope.message = response.data.message || "Employee data saved successfully!";
+              $scope.submitted = true;
+              $scope.employee = {}; // Clear form
+            }, function(error) {
+              $scope.message = "Error saving data.";
+              console.error(error);
+            });
+        } else {
+          $scope.showError = true;
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>
