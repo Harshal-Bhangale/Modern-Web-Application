@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="taskApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management Application</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .task-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .task-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #0d6efd;
+        }
+        .app-description {
+            background-color: #e7f5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="TaskController">
+        <div class="header">
+            <h1>Task Management Application</h1>
+            <p>A dynamic web application using Servlet, JSP and AngularJS</p>
+        </div>
+
+        <div class="app-description">
+            <h4>How This Application Works</h4>
+            <p>This application demonstrates integration between:</p>
+            <ul>
+                <li><strong>Servlets:</strong> Handle backend task operations (add, delete, list)</li>
+                <li><strong>JSP:</strong> Used for server-side rendering of the initial page (in a real application)</li>
+                <li><strong>AngularJS:</strong> Provides the frontend dynamic interactivity</li>
+            </ul>
+            <p>In a production environment, AJAX calls would connect to actual servlet endpoints.</p>
+        </div>
+
+        <div class="task-container">
+            <div class="mb-4">
+                <h3>Add New Task</h3>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter new task" ng-model="newTask">
+                    <button class="btn btn-primary" ng-click="addTask()">Add Task</button>
+                </div>
+            </div>
+
+            <h3>Your Tasks ({{tasks.length}})</h3>
+            <div ng-if="tasks.length === 0" class="text-center p-4">
+                <p class="text-muted">No tasks yet. Add your first task above!</p>
+            </div>
+            <div class="task-list">
+                <div class="task-item" ng-repeat="task in tasks">
+                    <span>{{task.description}}</span>
+                    <div>
+                        <button class="btn btn-sm btn-outline-danger" ng-click="deleteTask($index)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="technical-details mt-4">
+            <h4>Technical Implementation</h4>
+            <div class="accordion" id="technicalAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#servletCode">
+                            Java Servlet Code
+                        </button>
+                    </h2>
+                    <div id="servletCode" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <pre>
+@WebServlet("/taskServlet")
+public class TaskServlet extends HttpServlet {
+    private List<Task> tasks = new ArrayList<>();
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        
+        Gson gson = new Gson();
+        out.print(gson.toJson(tasks));
+        out.flush();
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String description = request.getParameter("description");
+        
+        Task newTask = new Task();
+        newTask.setId(tasks.size() + 1);
+        newTask.setDescription(description);
+        
+        tasks.add(newTask);
+        
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        
+        Gson gson = new Gson();
+        out.print(gson.toJson(newTask));
+        out.flush();
+    }
+    
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int taskId = Integer.parseInt(request.getParameter("id"));
+        
+        tasks.removeIf(task -> task.getId() == taskId);
+        
+        response.setStatus(HttpServletResponse.SC_OK);
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jspCode">
+                            JSP Code
+                        </button>
+                    </h2>
+                    <div id="jspCode" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <pre>
+&lt;%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%&gt;
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en" ng-app="taskApp"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Task Management Application&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container" ng-controller="TaskController"&gt;
+        &lt;!-- Content similar to the HTML above --&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Server-side data initialization --&gt;
+    &lt;script&gt;
+    angular.module('taskApp').run(['$rootScope', function($rootScope) {
+        // Initialize with server-side data
+        $rootScope.initialTasks = &lt;c:out value="${taskJson}" escapeXml="false" /&gt;;
+    }]);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Task Management Application</p>
+        </div>
+    </div>
+
+    <script>
+        // AngularJS application
+        var app = angular.module('taskApp', []);
+        
+        app.controller('TaskController', function($scope, $http) {
+            // In a real application, this would come from a servlet
+            $scope.tasks = [
+                { id: 1, description: "Create project structure" },
+                { id: 2, description: "Implement Servlet backend" },
+                { id: 3, description: "Develop JSP templates" }
+            ];
+            
+            $scope.newTask = "";
+            
+            $scope.addTask = function() {
+                if ($scope.newTask.trim() === "") return;
+                
+                // In a real app, this would call a servlet endpoint
+                // $http.post('/taskServlet', { description: $scope.newTask })
+                //    .then(function(response) {
+                //        $scope.tasks.push(response.data);
+                //    });
+                
+                // Simulated response
+                var newTask = {
+                    id: $scope.tasks.length + 1,
+                    description: $scope.newTask
+                };
+                
+                $scope.tasks.push(newTask);
+                $scope.newTask = "";
+            };
+            
+            $scope.deleteTask = function(index) {
+                // In a real app, this would call a servlet endpoint
+                // var taskId = $scope.tasks[index].id;
+                // $http.delete('/taskServlet?id=' + taskId)
+                //    .then(function() {
+                //        $scope.tasks.splice(index, 1);
+                //    });
+                
+                // Simulated response
+                $scope.tasks.splice(index, 1);
+            };
+            
+            // In a real app, this would load tasks from the servlet
+            // $http.get('/taskServlet')
+            //    .then(function(response) {
+            //        $scope.tasks = response.data;
+            //    });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
